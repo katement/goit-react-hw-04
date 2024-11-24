@@ -1,10 +1,11 @@
+// import { useState } from "react";
 const ImageGallery = ({ images }) => {
   return (
     <div>
       <ul>
         {images.map((post) => (
           <li key={post.objectID}>
-            <img src={post.url} alt="Picture">
+            <img src={post.urls.small} alt="Picture">
               {post.title}
             </img>
           </li>

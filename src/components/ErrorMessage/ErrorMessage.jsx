@@ -1,7 +1,10 @@
-import React from "react";
 // import s from "../ErrorMessage/ErrorMessage.module.css";
 const ErrorMessage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h2>Щось сталося!</h2>
+    </div>
+  );
 };
 
 export default ErrorMessage;
