@@ -1,7 +1,5 @@
-import React from "react";
+// const ImageModal = () => {
+//   return <div>MODAL</div>;
+// };
 
-const ImageModal = () => {
-  return <div></div>;
-};
-
-export default ImageModal;
+// export default ImageModal;

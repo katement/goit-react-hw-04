@@ -8,22 +8,27 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import { fetchImages } from "./services/api";
 import toast from "react-hot-toast";
+import ImageCard from "./components/ImageCard/ImageCard";
+// import ImageModal from "./components/ImageModal/ImageModal";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState("cat");
-  const [page, setPage] = useState(1);
-  const [total_pages, setTotalPages] = useState(0);
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
   useEffect(() => {
-    if (total_pages === page) {
+    if (totalPages === page) {
       toast.success("You have downloaded everything");
     }
-  }, [total_pages, page]);
+  }, [totalPages, page]);
 
   useEffect(() => {
     if (!query) return;
+    console.log(page, query);
     const getData = async () => {
       try {
         setIsLoading(true);
@@ -31,6 +36,7 @@ const App = () => {
         const { results, total_pages } = await fetchImages(query, page);
         setTotalPages(total_pages);
         setImages((prev) => [...prev, ...results]);
+        console.log(results, total_pages);
       } catch (error) {
         console.error(error);
         setIsError(true);
@@ -46,20 +52,22 @@ const App = () => {
     setImages([]);
     setQuery(query);
     setPage(0);
+
     // toast.error("Query changed");
   };
 
   return (
     <div>
       <SearchBar onChangeQuery={handleChangeQuery} />
-      {total_pages > page && (
+      {page < totalPages && (
         <button onClick={() => setPage((prev) => prev + 1)}> Load More </button>
       )}
       {isLoading && <Loader />}
-      <ImageGallery images={images} />
-      {/* <ImageCard /> */}
+      <ImageGallery images={images} isOpenModal={isOpenModal} />
+      {isOpenModal && <ImageCard />}
       {isError && <ErrorMessage />}
       {/* <ImageModal /> */}
+      <button onClick={() => setIsOpenModal(!isOpenModal)}>OPEN</button>
     </div>
   );
 };

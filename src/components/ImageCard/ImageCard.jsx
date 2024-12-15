@@ -1,7 +1,8 @@
 const ImageCard = () => {
   return (
     <div>
-      <img src="" alt="" />
+      Modal
+      <img src="src={post.urls.regular ?? post.slug}" alt="Picture" />
     </div>
   );
 };
