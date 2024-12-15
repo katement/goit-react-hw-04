@@ -5,7 +5,7 @@ const ImageGallery = ({ images }) => {
       <ul>
         {images.map((post) => (
           <li key={post.objectID}>
-            <img src={post.urls.small} alt="Picture">
+            <img src={post.urls.small ?? post.slug} alt="Picture">
               {post.title}
             </img>
           </li>

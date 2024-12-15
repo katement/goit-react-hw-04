@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import { fetchImages } from "./services/api";
+import toast from "react-hot-toast";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -15,6 +16,11 @@ const App = () => {
   const [query, setQuery] = useState("cat");
   const [page, setPage] = useState(1);
   const [total_pages, setTotalPages] = useState(0);
+  useEffect(() => {
+    if (total_pages === page) {
+      toast.success("You have downloaded everything");
+    }
+  }, [total_pages, page]);
 
   useEffect(() => {
     if (!query) return;
@@ -40,6 +46,7 @@ const App = () => {
     setImages([]);
     setQuery(query);
     setPage(0);
+    // toast.error("Query changed");
   };
 
   return (
