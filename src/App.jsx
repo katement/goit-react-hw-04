@@ -13,6 +13,7 @@ import ImageCard from "./components/ImageCard/ImageCard";
 
 const App = () => {
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage]=useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [query, setQuery] = useState("");
@@ -56,6 +57,15 @@ const App = () => {
     // toast.error("Query changed");
   };
 
+  const handleImageClick=(image)=>{
+    setSelectedImage(image);
+    setIsOpenModal(true)
+  }
+  const handleCloseModal=()=>{
+    setIsOpenModal(false)
+    setSelectedImage(null)
+  }
+
   return (
     <div>
       <SearchBar onChangeQuery={handleChangeQuery} />
@@ -63,11 +73,11 @@ const App = () => {
         <button onClick={() => setPage((prev) => prev + 1)}> Load More </button>
       )}
       {isLoading && <Loader />}
-      <ImageGallery images={images} isOpenModal={isOpenModal} />
+      {images.length >0 &&(<ImageGallery images={images} onImageClick={handleImageClick} />)}
       {isOpenModal && <ImageCard />}
       {isError && <ErrorMessage />}
-      {/* <ImageModal /> */}
-      <button onClick={() => setIsOpenModal(!isOpenModal)}>OPEN</button>
+      {isOpenModal&&(<ImageModal selectedImage={selectedImage} onClose={handleCloseModal}/>)}
+      {/* <button onClick={() => setIsOpenModal(!isOpenModal)}>OPEN</button> */}
     </div>
   );
 };

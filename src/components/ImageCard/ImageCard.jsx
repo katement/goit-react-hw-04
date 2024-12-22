@@ -1,8 +1,9 @@
-const ImageCard = () => {
+const ImageCard = (results, onClick) => {
+  const {urls, slug} =results
   return (
-    <div>
+    <div onClick={onClick}>
       Modal
-      <img src="src={post.urls.regular ?? post.slug}" alt="Picture" />
+      <img src={post.urls.small ?? post.slug} alt="Picture" />
     </div>
   );
 };
