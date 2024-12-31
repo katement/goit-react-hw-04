@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import s from "../ImageModal/ImageModal.module.css";
 
 const ImageModal = ({ selectedImage, onClose }) => {
   const { urls, slug } = selectedImage;
@@ -14,10 +15,10 @@ const ImageModal = ({ selectedImage, onClose }) => {
     };
   }, [onClose]);
   return (
-    <div className="modal" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className={s.wrapper} onClick={onClose}>
+      <div className={s.content} onClick={(e) => e.stopPropagation()}>
         <img src={urls?.regular} alt={slug || "Picture"} />
-        <button className="close-btn" onClick={onClose}>
+        <button className={s.closeBtn} onClick={onClose}>
           X
         </button>
       </div>

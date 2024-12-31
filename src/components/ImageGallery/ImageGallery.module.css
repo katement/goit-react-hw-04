@@ -1,0 +1,9 @@
+.containerList {
+  width: 1000px;
+  margin: auto;
+  text-decoration: none;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
