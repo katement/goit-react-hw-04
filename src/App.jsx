@@ -15,7 +15,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -41,6 +41,7 @@ const App = () => {
           setHasMore(false);
           return console.log("Error!!!");
         }
+        
         if (response.results.length === 0) {
           toast.error("No images found!");
           setHasMore(false);
