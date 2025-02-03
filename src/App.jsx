@@ -87,7 +87,7 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <SearchBar setQuery={setQuery} />
+        <SearchBar setQuery={setQuery} setImages={setImages}/>
       </header>
       <main>
         {/* <Toaster>

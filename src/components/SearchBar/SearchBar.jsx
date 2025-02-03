@@ -1,9 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-const SearchBar = ({ setQuery }) => {
+const SearchBar = ({ setQuery, setImages }) => {
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+    
+    
   };
 
   const handleSearch = () => {
@@ -12,6 +14,7 @@ const SearchBar = ({ setQuery }) => {
       return;
     }
     setQuery(inputValue.trim());
+    setImages([])
   };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
